@@ -1,3 +1,3 @@
-from .check import check
+from .recognit import recognit
 
-__all__ = ['check']
+__all__ = ['recognit']
