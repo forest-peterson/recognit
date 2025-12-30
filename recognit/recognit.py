@@ -1,16 +1,18 @@
-def recognit(value, validator, context=None):
+def recognit(value, header, context=None):
 
     if context is None:
         context = {}
 
-    PASS_THRESHOLD = 0.75
+    PASS_THRESHOLD = 0.66
 
-    test1 = recognit_x_column(value, validator)
-    test2 = recognit_max_value(value, validator)
-    test3 = recognit_min_value(value, validator)
-    test4 = recognit_validator(value, validator, context=context)
+    test1 = recognit_x_column(value, header)
+    test2 = recognit_max_value(value, header)
+    test3 = recognit_min_value(value, header)
 
-    return ((test1 + test2 + test3 + test4) / 4) >= PASS_THRESHOLD
+    #test4 = recognit_validator(value, header, context=context)
+
+    #return ((test1 + test2 + test3 + test4) / 4) >= PASS_THRESHOLD
+    return ((test1 + test2 + test3) / 3) >= PASS_THRESHOLD
     
 
 #helper
@@ -25,18 +27,18 @@ def _get_float_val(value):
 
 #speific tests
 
-def recognit_x_column(value, validator):
+def recognit_x_column(value, header):
     x_tolerance = 12.0
-    if validator['x_center'] is None:
+    if header['x_center'] is None:
         return True
 
-    if validator['x_center'] == 0: 
+    if header['x_center'] == 0: 
         return True # Skip check if not configured
             
     if (
-        (value.x < (validator['x_center'] + x_tolerance))
+        (value.x < (header['x_center'] + x_tolerance))
         and 
-        (value.x > (validator['x_center'] - x_tolerance))
+        (value.x > (header['x_center'] - x_tolerance))
         ):
         return True
     else:
@@ -44,47 +46,46 @@ def recognit_x_column(value, validator):
 
 
 
-def recognit_max_value(value, validator):
+def recognit_max_value(value, header):
     val_float = _get_float_val(value)
     if val_float is None:
         return False
 
-    if validator['max_value'] is None:
+    if header['max_value'] is None:
         return True
 
-    if val_float > validator['max_value']:
+    if val_float > header['max_value']:
         return False
 
     return True
 
 
-def recognit_min_value(value, validator):
+def recognit_min_value(value, header):
     val_float = _get_float_val(value)
     if val_float is None:
         return False
 
-    if validator['min_value'] is None:
+    if header['min_value'] is None:
         return True
 
-    if val_float < validator['min_value']:
+    if val_float < header['min_value']:
         return False
     
     return True
 
 
-def recognit_validator(value, validator, context):
+def recognit_validator(value, header, context):
     val_float = _get_float_val(value)
 
     if val_float is None:
         return False
 
-    if validator['validator'] is None:
+    if header['validator'] is None:
         return True
 
 
-    if validator['validator'](val_float, **context):
+    if header['validator'](val_float, **context):
         return True
 
     return False
 
-#unified test with score
