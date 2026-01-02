@@ -10,8 +10,8 @@ Takes a value and a header definition, runs 4 validation tests, returns True if 
 
 **The 4 tests:**
 1. **Position check**: Is the value's x-coordinate within ±12px of the header's expected position?
-2. **Max check**: Is the numeric value ≤ the header's maximum?
-3. **Min check**: Is the numeric value ≥ the header's minimum?
+2. **Max check**: Is the value ≤ the header's maximum?
+3. **Min check**: Is the value ≥ the header's minimum?
 4. **Validator check**: Does the value pass the custom validator function? (optional)
 
 **Pass threshold**: Configurable (default 0.66 = 66% of tests must pass)
@@ -20,7 +20,8 @@ Takes a value and a header definition, runs 4 validation tests, returns True if 
 
 bash
 pip install recognit
-Usage
+
+# Usage
 from recognit import recognit
 
 # Header definition
@@ -42,5 +43,6 @@ value = Value(x=148, text="8.50")
 # Validate
 if recognit(value, header):
     print("Match!")  # True: position close, value in range
-License
+    
+# License
 MIT
