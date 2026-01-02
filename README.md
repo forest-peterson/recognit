@@ -2,7 +2,7 @@
 
 **Validate if a value plausibly matches a header definition**
 
-Given a naked value (like `40.00` or `650`) and a header definition, recognit checks if they're cognitively compatible using consensus-based validation.
+Given a naked value (like `40.00` or `650`) and a header definition, recognit validates spatial position (x-coordinate ±12px), min/max ranges, and optional custom validators.
 
 ## What It Does
 
