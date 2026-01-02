@@ -1,5 +1,8 @@
 def recognit(value, header, context=None):
 
+    if header is None:
+        return False
+
     if context is None:
         context = {}
 
