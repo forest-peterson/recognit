@@ -15,16 +15,21 @@ def recognit(value, header, context=None):
     recog_log.info("*recognit()")
 
     if header is None:
+        recog_log.info("*recognit() header = None")
         return False
 
     if context is None:
+        recog_log.info("*recognit() context = {}")
         context = {}
 
     PASS_THRESHOLD = 0.66
 
     test1 = recognit_x_column(value, header)
+    recog_log.info("*recognit() test1={test1}")
     test2 = recognit_max_value(value, header)
+    recog_log.info("*recognit() test2={test2}")
     test3 = recognit_min_value(value, header)
+    recog_log.info("*recognit() test3={test3}")
 
     #test4 = recognit_validator(value, header, context=context)
 
