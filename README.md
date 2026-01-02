@@ -6,12 +6,15 @@ Given a naked value (like `40.00` or `650`) and a header definition, recognit ch
 
 ## What It Does
 
-Takes a value and a header definition, runs 3 validation tests, returns True if ≥2 out of 3 tests pass.
+Takes a value and a header definition, runs 4 validation tests, returns True if the tests pass a configurable threshold (default: ≥66%).
 
-**The 3 tests:**
+**The 4 tests:**
 1. **Position check**: Is the value's x-coordinate within ±12px of the header's expected position?
 2. **Max check**: Is the numeric value ≤ the header's maximum?
 3. **Min check**: Is the numeric value ≥ the header's minimum?
+4. **Validator check**: Does the value pass the custom validator function? (optional)
+
+**Pass threshold**: Configurable (default 0.66 = 66% of tests must pass)
 
 ## Installation
 
