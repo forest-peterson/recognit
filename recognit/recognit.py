@@ -12,7 +12,7 @@ if not recog_log.handlers:
     recog_log.addHandler(handler)
 
 def recognit(value, header, context=None):
-    logging.info("*recognit()")
+    recog_log.info("*recognit()")
 
     if header is None:
         return False
