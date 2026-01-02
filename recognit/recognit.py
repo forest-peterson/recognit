@@ -17,6 +17,8 @@ def recognit(value, header, context=None):
     if header is None:
         recog_log.info("*recognit() header = None")
         return False
+        
+    recog_log.info(f"*recognit() header is not None, type={type(header)}")
 
     if context is None:
         recog_log.info("*recognit() context = {}")
