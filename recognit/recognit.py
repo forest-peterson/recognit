@@ -1,3 +1,9 @@
+import logging
+logging.basicConfig(
+    filename='./local_temp/debug.log', 
+    level=logging.DEBUG, 
+    format='%(asctime)s - %(message)s')
+
 def recognit(value, header, context=None):
 
     if header is None:
@@ -15,6 +21,11 @@ def recognit(value, header, context=None):
     #test4 = recognit_validator(value, header, context=context)
 
     #return ((test1 + test2 + test3 + test4) / 4) >= PASS_THRESHOLD
+    logging.info(f"test1: {test1}, test2: {test2}, test3: {test3}")
+    logging.info(f"PASS_THRESHOLD: {PASS_THRESHOLD}")
+    logging.info(f"value.text: {value.text if hasattr(value, 'text') else value}")
+    logging.info(f"header keys: {list(header.keys()) if isinstance(header, dict) else header}")
+    logging.info(f"context keys: {list(context.keys()) if isinstance(context, dict) else context}")
     return ((test1 + test2 + test3) / 3) >= PASS_THRESHOLD
     
 
