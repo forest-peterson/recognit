@@ -14,7 +14,7 @@ if not recog_log.handlers:
 def recognit(value, header, context=None):
     recog_log.info("*recognit()")
 
-    if header is None:
+    if header is None or header == {}:
         recog_log.info("*recognit() value={value.text} for header = None")
         return False
         
