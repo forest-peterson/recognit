@@ -1,7 +1,7 @@
 import logging
 
 recog_log = logging.getLogger('recognit')
-recog_log.setLevel(logging.DEBUG)  
+recog_log.setLevel(logging.INFO)  
 
 # Add handler if one doesn't exist
 if not recog_log.handlers:
@@ -12,35 +12,35 @@ if not recog_log.handlers:
     recog_log.addHandler(handler)
 
 def recognit(value, header, context=None):
-    recog_log.info("*recognit()")
+    recog_log.debug(" **recognit()")
 
     if header is None or header == {}:
-        recog_log.info("*recognit() value={value.text} for header = None")
+        recog_log.info(" **recognit() value={value.text} for header = None")
         return False
         
-    recog_log.info(f"*recognit() value={value.text} for header type={type(header)}")
+    recog_log.debug(f" **recognit() value={value.text} for header type={type(header)}")
 
     if context is None:
-        recog_log.info("*recognit() context = {}")
+        recog_log.info(" **recognit() context = {}")
         context = {}
 
     PASS_THRESHOLD = 0.66
 
     test1 = recognit_x_column(value, header)
-    recog_log.info("*recognit() test1={test1}")
+    recog_log.debug(" **recognit() test1={test1}")
     test2 = recognit_max_value(value, header)
-    recog_log.info("*recognit() test2={test2}")
+    recog_log.debug(" **recognit() test2={test2}")
     test3 = recognit_min_value(value, header)
-    recog_log.info("*recognit() test3={test3}")
+    recog_log.debug(" **recognit() test3={test3}")
 
     #test4 = recognit_validator(value, header, context=context)
 
     #return ((test1 + test2 + test3 + test4) / 4) >= PASS_THRESHOLD
-    recog_log.critical(f"**test1: {test1}, test2: {test2}, test3: {test3}")
-    recog_log.critical(f"**PASS_THRESHOLD: {PASS_THRESHOLD}")
-    recog_log.critical(f"**value.text: {value.text if hasattr(value, 'text') else value}")
-    recog_log.critical(f"**header keys: {list(header.keys()) if isinstance(header, dict) else header}")
-    recog_log.critical(f"**context keys: {list(context.keys()) if isinstance(context, dict) else context}")
+    test_sum = sum([test1, test2, test3])
+    recog_log.critical(f" **recognit(): value.text: {value.text if hasattr(value, 'text') else value}")
+    recog_log.critical(f" -- **recognit(): test1: {test1}, test2: {test2}, test3: {test3} for sum = {test_sum} of THRESHOLD {PASS_THRESHOLD}")
+    recog_log.critical(f" -- **recognit(): header keys: {list(header.keys()) if isinstance(header, dict) else header}")
+    recog_log.critical(f" -- **recognit(): context keys: {list(context.keys()) if isinstance(context, dict) else context}")
     
     return ((test1 + test2 + test3) / 3) >= PASS_THRESHOLD
     
