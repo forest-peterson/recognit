@@ -78,6 +78,7 @@ def recognit_x_column(value, header):
 
 def recognit_max_value(value, header):
     val_float = _get_float_val(value)
+    
     if val_float is None:
         return False
 
