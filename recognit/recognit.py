@@ -60,9 +60,11 @@ def _get_float_val(value):
 def recognit_x_column(value, header):
     x_tolerance = 12.0
     if header['center_x'] is None:
+        recog_log.info(" ** value = {value.text} for header['center_x'] is None")
         return True
 
     if header['center_x'] == 0: 
+        recog_log.info(" ** value = {value.text} for header['center_x'] is 0")
         return True # Skip check if not configured
             
     if (
@@ -70,8 +72,10 @@ def recognit_x_column(value, header):
         and 
         (value.x > (header['center_x'] - x_tolerance))
         ):
+        recog_log.info(f" ** value = {value.text} x={value.x} for header x={header['center_x']} is within tolerance {x_tolerance}")
         return True
     else:
+        recog_log.info(f" ** value = {value.text} x={value.x} for header x={header['center_x']} is not within tolerance {x_tolerance}")
         return False
 
 
@@ -80,12 +84,15 @@ def recognit_max_value(value, header):
     val_float = _get_float_val(value)
     
     if val_float is None:
+        recog_log.info(f" ** value = {value.text} is None for max_value")
         return False
 
     if header['max_value'] is None:
+        recog_log.info(f" ** value = {value.text} for max_value is None")
         return True
 
     if val_float > header['max_value']:
+        recog_log.info(f" ** value = {value.text} is greater than max_value {header['max_value']}")
         return False
 
     return True
@@ -94,12 +101,15 @@ def recognit_max_value(value, header):
 def recognit_min_value(value, header):
     val_float = _get_float_val(value)
     if val_float is None:
+        recog_log.info(f" ** value = {value.text} is None for min_value")
         return False
 
     if header['min_value'] is None:
+        recog_log.info(f" ** value = {value.text} for min_value is None")
         return True
 
     if val_float < header['min_value']:
+        recog_log.info(f" ** value = {value.text} is less than min_value {header['min_value']}")
         return False
     
     return True
