@@ -59,16 +59,16 @@ def _get_float_val(value):
 
 def recognit_x_column(value, header):
     x_tolerance = 12.0
-    if header['x_center'] is None:
+    if header['center_x'] is None:
         return True
 
-    if header['x_center'] == 0: 
+    if header['center_x'] == 0: 
         return True # Skip check if not configured
             
     if (
-        (value.x < (header['x_center'] + x_tolerance))
+        (value.x < (header['center_x'] + x_tolerance))
         and 
-        (value.x > (header['x_center'] - x_tolerance))
+        (value.x > (header['center_x'] - x_tolerance))
         ):
         return True
     else:
