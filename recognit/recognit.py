@@ -10,6 +10,7 @@ if not recog_log.handlers:
     formatter = logging.Formatter('%(asctime)s - %(message)s')
     handler.setFormatter(formatter)
     recog_log.addHandler(handler)
+    recog_log.propagate = False
 
 def recognit(value, header, context=None):
     recog_log.debug(" **recognit()")
