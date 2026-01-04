@@ -69,9 +69,9 @@ def recognit_x_column(value, header):
         return True # Skip check if not configured
             
     if (
-        (value.x < (header['center_x'] + x_tolerance))
+        (value.center_x < (header['center_x'] + x_tolerance))
         and 
-        (value.x > (header['center_x'] - x_tolerance))
+        (value.center_x > (header['center_x'] - x_tolerance))
         ):
         recog_log.info(f" ** value = {value.text} x={value.center_x:.0f} for header x={header['center_x']:.0f} is within tolerance {x_tolerance:.1f}")
         return True
