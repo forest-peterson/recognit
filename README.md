@@ -19,7 +19,7 @@ Takes a value and a header definition, runs 4 validation tests, returns True if 
 ## Installation
 
 bash
-pip install recognit
+```pip install recognit```
 
 # Usage
 from recognit import recognit
