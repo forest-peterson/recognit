@@ -64,7 +64,7 @@ def recognit_x_column(value, header):
         recog_log.info(" ** value = {value.text} for header['center_x'] is None")
         return True
 
-    if header['center_x'] == 0: 
+    if header['center_x'] == 0: #used to bypass during testing and setup
         recog_log.info(" ** value = {value.text} for header['center_x'] is 0")
         return True # Skip check if not configured
             
