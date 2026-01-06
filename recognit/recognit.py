@@ -1,7 +1,7 @@
 import logging
 
 recog_log = logging.getLogger('recognit')
-recog_log.setLevel(logging.INFO)  
+recog_log.setLevel(logging.ERROR)
 
 # Add handler if one doesn't exist
 if not recog_log.handlers:
