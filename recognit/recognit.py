@@ -1,8 +1,12 @@
 import logging
 
 recog_log = logging.getLogger('recognit')
-recog_log.setLevel(logging.ERROR)
+recog_log.setLevel(logging.WARNING)
 
+'''
+#DISABLED 2026-04-29: removed dedicated FileHandler + propagate=False
+#so recognit records flow into the parser's per-request debug_<TYPE>.log
+#via root, instead of the static ./local_temp/debug.log.
 # Add handler if one doesn't exist
 if not recog_log.handlers:
     handler = logging.FileHandler('./local_temp/debug.log')
@@ -11,6 +15,7 @@ if not recog_log.handlers:
     handler.setFormatter(formatter)
     recog_log.addHandler(handler)
     recog_log.propagate = False
+'''
 
 def recognit(value, header, context=None):
     recog_log.debug(" ** recognit()")
