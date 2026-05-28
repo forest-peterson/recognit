@@ -64,7 +64,7 @@ def _get_float_val(value):
 #speific tests
 
 def recognit_x_column(value, header):
-    x_tolerance = 20.0
+    x_tolerance = header.get('x_tolerance', 20.0)
     if header['center_x'] is None:
         recog_log.info(" ** value = {value.text} for header['center_x'] is None")
         return True
