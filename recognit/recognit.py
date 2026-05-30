@@ -15,6 +15,11 @@ if not recog_log.handlers:
     handler.setFormatter(formatter)
     recog_log.addHandler(handler)
     recog_log.propagate = False
+
+recognit is installed from GitHub via pip, not from a local clone:
+pip install --force-reinstall --no-deps git+https://github.com/forest-peterson/recognit.git@main
+No local repo checkout exists on the VMs. pip clones to /tmp/ during install,
+installs the package, then discards the clone.
 '''
 
 def recognit(value, header, context=None):
